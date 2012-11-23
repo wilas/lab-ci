@@ -9,18 +9,15 @@ class gitolite3 {
 
 
     #
-    # From author gitolite3: http://sitaramc.github.com/gitolite/repos.html
+    # From gitolite3 author: http://sitaramc.github.com/gitolite/repos.html
     # WARNING: Do NOT add new repos or users manually on the server. 
     # Gitolite users, repos, and access rules are maintained by making changes 
     # to a special repo called 'gitolite-admin' and pushing those changes to the server.
     #
-    # That puppet module use gitolite-admin repo to manage gitolite server, but do it localy,
-    # so stop manage gitolite/git using gitolite-admin repo, instead use puppet gitolite3::repo
-    # 
+    # That puppet module use gitolite-admin repo to manage gitolite server and do it localy,
+    # Stop manage gitolite3 using remote gitolite-admin repo, instead use 
+    # puppet gitolite3::repo and gitolite3::guser
     #
-    # pubkeys obtained from elsewhere: http://sitaramc.github.com/gitolite/special.html
-    # adding and removing repos: http://sitaramc.github.com/gitolite/repos.html
-
 
 
     # Package create gitolite3 group and user automaticly
@@ -54,7 +51,7 @@ class gitolite3 {
         require => Package['gitolite3'],
     }
 
-    # create gitolite3 puppet managment directory and some scripts
+    # create gitolite3 puppet managment directory and copy some scripts
     file {
         "${gitolite3_guard_dir}":
             ensure => directory,
@@ -80,6 +77,7 @@ class gitolite3 {
     }
 
     # use subconf: http://sitaramc.github.com/gitolite/g2incompat.html#g2i-name
+    # create keydir directory
     file { 
         "${gitolite3_guard_dir}/gitolite-admin/conf/auto":
             ensure  => directory,

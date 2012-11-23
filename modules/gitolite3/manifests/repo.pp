@@ -11,8 +11,8 @@ define gitolite3::repo( $conf_file, $ensure,  $bare_src="" ) {
         require => File["${gitolite3::gitolite3_guard_dir}/gitolite-admin/conf/auto"],
     }
 
-
     if $ensure == "absent" {
+        # remove git repo
         file { "${gitolite3::gitolite3_dir}/repositories/${name}.git":
             ensure  => absent,        
             mode    => 0644,
