@@ -9,4 +9,9 @@ CI: git, jenkins, ...
 
 ## Bibliography
 
+Git
+-
+Gitolite
+-
+Gitweb
 -

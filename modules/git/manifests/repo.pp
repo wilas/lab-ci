@@ -11,7 +11,7 @@ define git::repo($ensure=present){
             mode   => 0644,
         }
 
-        #su - git && cd repo && git init --bare
+        # su - git && cd repo && git init --bare
         exec { "git init --bare ${name}":
             path    => "/bin:/sbin:/usr/bin:/usr/sbin",
             command => "git init --bare",
@@ -28,7 +28,6 @@ define git::repo($ensure=present){
             recurse => true,
             force   => true,
         }
-    
     }
 
 }
