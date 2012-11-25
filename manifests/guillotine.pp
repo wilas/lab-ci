@@ -65,3 +65,5 @@ gitolite3::guser { "redman":
     ensure   => present,
 }
 
+# GITWEB + GIT-DAEMON
+class {"gitolite3::gitweb":}

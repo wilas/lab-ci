@@ -1,23 +1,24 @@
+#
+# From gitolite3 author: http://sitaramc.github.com/gitolite/repos.html
+# WARNING: Do NOT add new repos or users manually on the server. 
+# Gitolite users, repos, and access rules are maintained by making changes 
+# to a special repo called 'gitolite-admin' and pushing those changes to the server.
+#
+# That puppet module use gitolite-admin repo to manage gitolite server and do it localy,
+# Stop manage gitolite3 using remote gitolite-admin repo, instead use 
+# puppet gitolite3::repo and gitolite3::guser
+#
+
 class gitolite3 {
 
-    $uid = 497
+    # uid must be > 500 if you want use gitweb: 
+    # https://wincent.com/wiki/Troubleshooting_suexec_errors
+    $uid = 888
     $user = "gitolite3"
     $group = "gitolite3"
-    
+
     $gitolite3_dir = "/var/lib/gitolite3"
     $gitolite3_guard_dir = "${gitolite3_dir}/.gitolite-puppet-guard"
-
-
-    #
-    # From gitolite3 author: http://sitaramc.github.com/gitolite/repos.html
-    # WARNING: Do NOT add new repos or users manually on the server. 
-    # Gitolite users, repos, and access rules are maintained by making changes 
-    # to a special repo called 'gitolite-admin' and pushing those changes to the server.
-    #
-    # That puppet module use gitolite-admin repo to manage gitolite server and do it localy,
-    # Stop manage gitolite3 using remote gitolite-admin repo, instead use 
-    # puppet gitolite3::repo and gitolite3::guser
-    #
 
 
     # Package create gitolite3 group and user automaticly
@@ -26,10 +27,9 @@ class gitolite3 {
     }
 
     group { "${group}":
-        ensure   => present,
-        gid      => "${uid}",
-        system   => true,
-        require  => Package["gitolite3"],
+        ensure  => present,
+        gid     => "${uid}",
+        require => Package["gitolite3"],
     }
 
     user { "${user}":
@@ -38,11 +38,18 @@ class gitolite3 {
         managehome => true,
         uid        => "${uid}",
         gid        => "${group}",
-        system     => true,
         shell      => "/bin/sh",
         require    => Package["gitolite3"],
     }
     
+    # gitolite3 home dir -  owner and group
+    file { "${gitolite3_dir}":
+        ensure => directory,
+        owner  => "${user}",
+        group  => "${group}", 
+    }
+
+
     # run script building repository and skeleton for configuration
     exec { "gitolite_setup":
         command => "/bin/su - ${user} -c '/usr/bin/gitolite setup -a admin'",
@@ -51,7 +58,17 @@ class gitolite3 {
         require => Package['gitolite3'],
     }
 
-    # create gitolite3 puppet managment directory and copy some scripts
+    # gitolite basic configuration tuning
+    file { "${gitolite3_dir}/.gitolite.rc":
+        ensure  => file,
+        mode    => 0644,
+        owner   => "${user}",
+        group   => "${group}",
+        source  => 'puppet:///modules/gitolite3/gitolite.rc',
+        require => Exec["gitolite_setup"],
+    }
+
+    # create gitolite3_guard_dir -  puppet managment directory and add some scripts
     file {
         "${gitolite3_guard_dir}":
             ensure => directory,
@@ -106,7 +123,7 @@ class gitolite3 {
             notify  => Exec["update_gitolite_admin"],
             require => Exec["gitolite_puppet_guard"];
     }
-    
+
     # auto commit and push gitolite-admin changes
     exec { "update_gitolite_admin":
         command     => "/bin/su - ${user} -c '${gitolite3_guard_dir}/update_gitolite_admin.sh'",

@@ -10,7 +10,7 @@ CI: gitolite + gitweb; jenkins + TDD:... + BDD:...
 
 ## Good to know
 
-### gitolite3::repo create:
+### gitolite3::repo - create new empty:
 
 ```ruby
 
@@ -21,7 +21,7 @@ CI: gitolite + gitweb; jenkins + TDD:... + BDD:...
 
 ```
 
-### gitolite3::repo restore:
+### gitolite3::repo - restore bare:
 
 ```ruby
 
@@ -30,6 +30,26 @@ CI: gitolite + gitweb; jenkins + TDD:... + BDD:...
         ensure    => present,
         bare_src  => "/vagrant/sample/red.git",
     }
+
+```
+
+### enable repo in gitweb `edit red.conf` (test: 77.77.77.131/gitweb):
+
+```
+
+repo red
+    RW+                 =   redman
+    R                   =   gitweb
+
+```
+
+### enable repo in git-daemon `red.conf` (test: git clone git://77.77.77.131/red.git):
+
+```
+
+repo red
+    RW+                 =   redman
+    R                   =   daemon
 
 ```
 
@@ -53,7 +73,10 @@ CI: gitolite + gitweb; jenkins + TDD:... + BDD:...
 ### Gitweb
 
  - github book: http://git-scm.com/book/en/Git-on-the-Server-GitWeb
- - gitweb on centos6: http://monkeyswithbuttons.wordpress.com/2012/03/28/gitolite-git-daemon-gitweb-on-centos-6/
+ - gitweb on centos6, git-deamon: http://monkeyswithbuttons.wordpress.com/2012/03/28/gitolite-git-daemon-gitweb-on-centos-6/
+ - suexec wrapper: http://linuxadminzone.com/quickly-setup-git-server-with-gitolite-gitweb-ssh-and-http-auth/
+ - suexec wrapper - gitolite author: http://sitaramc.github.com/gitolite/g2/ggshb.html
+ - gitolite user/group uid/gid for gitweb: https://wincent.com/wiki/Troubleshooting_suexec_errors
 
 ### Jenkins
 

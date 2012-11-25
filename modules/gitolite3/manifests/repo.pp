@@ -15,7 +15,6 @@ define gitolite3::repo( $conf_file, $ensure,  $bare_src="" ) {
         # remove git repo
         file { "${gitolite3::gitolite3_dir}/repositories/${name}.git":
             ensure  => absent,        
-            mode    => 0644,
             owner   => "${gitolite3::user}",
             group   => "${gitolite3::group}",
             recurse => true,
@@ -31,7 +30,8 @@ define gitolite3::repo( $conf_file, $ensure,  $bare_src="" ) {
         }
         # manage restored repo owner,group
         file { "${gitolite3::gitolite3_dir}/repositories/${name}.git":
-            ensure  => present,        
+            ensure  => present,
+            mode    => 0664,
             owner   => "${gitolite3::user}",
             group   => "${gitolite3::group}",
             recurse => true,
