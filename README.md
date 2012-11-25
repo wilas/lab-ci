@@ -18,7 +18,6 @@ CI: gitolite + gitweb; jenkins + TDD:... + BDD:...
         conf_file => "/vagrant/sample/blue.conf",
         ensure    => present,
     }
-
 ```
 
 ### gitolite3::repo - restore bare:
@@ -30,27 +29,22 @@ CI: gitolite + gitweb; jenkins + TDD:... + BDD:...
         ensure    => present,
         bare_src  => "/vagrant/sample/red.git",
     }
-
 ```
 
-### enable repo in gitweb `edit red.conf` (test: 77.77.77.131/gitweb):
+### enable repo in gitweb (test: 77.77.77.131/gitweb):
 
 ```
-
 repo red
     RW+                 =   redman
     R                   =   gitweb
-
 ```
 
-### enable repo in git-daemon `red.conf` (test: git clone git://77.77.77.131/red.git):
+### enable repo in git-daemon (test: git clone git://77.77.77.131/red.git):
 
 ```
-
 repo red
     RW+                 =   redman
     R                   =   daemon
-
 ```
 
 ## Bibliography
