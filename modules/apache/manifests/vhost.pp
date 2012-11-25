@@ -1,4 +1,4 @@
-define apache::vhost( $vdomain = "", $documentroot = "", $vtemplate="" ) {
+define apache::vhost( $vdomain = "", $documentroot = "" ) {
     include apache
 
     if $vdomain == "" {
@@ -20,7 +20,6 @@ define apache::vhost( $vdomain = "", $documentroot = "", $vtemplate="" ) {
         require => Package["httpd"],
     }
 
-    # add if -> manage priv or not...
     file { "${vhost_root}":
         ensure => directory,
         owner  => "root",

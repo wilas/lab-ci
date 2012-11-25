@@ -55,9 +55,7 @@ class gitolite3::gitweb {
         notify  => Service["httpd"],
     }
 
-    # TODO: change apache vhost -> should take as arg. template
-    # use apache::vhost
-    # check if apache service is notify automaticly
+    # apache vhost
     file { "/etc/httpd/conf.d/20_gitweb.conf":
         ensure  => file,
         mode    => 0644,
