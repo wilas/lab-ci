@@ -2,8 +2,9 @@ class gitolite3::gitweb {
 
     include apache
     include gitolite3
-    #firewall module required
 
+    # Remember open firewall port
+    
     # Known issues:
     #  gitweb - apache error 404: No projects found
     #    gitweb.cgi is executed directly, as the httpd user and without any environment settings
@@ -92,13 +93,6 @@ class gitolite3::gitweb {
         hasstatus  => true,
         hasrestart => true,
         require    => Package["git-daemon"],
-    }
-    
-    firewall { "100 allow git-deamon":
-        state  => ['NEW'],
-        dport  => '9418',
-        proto  => 'tcp',
-        action => accept,
     }
 
 }

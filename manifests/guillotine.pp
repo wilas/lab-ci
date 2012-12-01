@@ -47,23 +47,35 @@ git::repo { "trout":
 class {"gitolite3":}
 # repos
 gitolite3::repo { "blue":
-    conf_file => "/vagrant/sample/blue.conf",
+    conf_file => "/vagrant/samples/blue.conf",
     ensure    => present,
 }
 gitolite3::repo { "red":
-    conf_file => "/vagrant/sample/red.conf",
+    conf_file => "/vagrant/samples/red.conf",
     ensure    => present,
-    bare_src  => "/vagrant/sample/red.git",
+    bare_src  => "/vagrant/samples/red.git",
 }
 gitolite3::repo { "green":
-    conf_file => "/vagrant/sample/green.conf",
+    conf_file => "/vagrant/samples/green.conf",
     ensure    => absent,
 }
 # users
 gitolite3::guser { "redman":
-    key_file => "/vagrant/sample/id_rsa.redman.pub",
+    key_file => "/vagrant/samples/id_rsa.redman.pub",
     ensure   => present,
 }
 
 # GITWEB + GIT-DAEMON
 class {"gitolite3::gitweb":}
+firewall { "100 allow gitweb-apache":
+    state  => ['NEW'],
+    dport  => '80',
+    proto  => 'tcp',
+    action => accept,
+}
+firewall { "100 allow git-deamon":
+    state  => ['NEW'],
+    dport  => '9418',
+    proto  => 'tcp',
+    action => accept,
+}

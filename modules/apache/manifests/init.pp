@@ -4,13 +4,6 @@ class apache {
         ensure => installed,
     }
 
-    firewall { "100 allow apache":
-        state  => ['NEW'],
-        dport  => '80',
-        proto  => 'tcp',
-        action => accept,
-    }
-
     service { "httpd":
         ensure     => running,
         enable     => true,

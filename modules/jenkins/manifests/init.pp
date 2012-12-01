@@ -19,7 +19,7 @@ class jenkins {
         require  => File["/etc/pki/rpm-gpg/jenkins-ci.org.key"],
     }
 
-    # install java -> 1.7.0 not working yet
+    # java 1.7.0 not working yet good with jenkins
     package { "java":
         name => ["java-1.6.0-openjdk", "java-1.6.0-openjdk-devel"],
         ensure => installed,
@@ -36,13 +36,6 @@ class jenkins {
         hasrestart => true,
         hasstatus  => true,
         require    => Package["jenkins"],
-    }
-
-    firewall { "100 allow jenkins www":
-        state  => ['NEW'],
-        dport  => '8080',
-        proto  => 'tcp',
-        action => accept,
     }
 
 }

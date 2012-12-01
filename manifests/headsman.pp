@@ -34,3 +34,9 @@ class { "basic_firewall": }
 
 # JENKINS
 class { "jenkins": }
+firewall { "100 allow jenkins www":
+    state  => ['NEW'],
+    dport  => '8080',
+    proto  => 'tcp',
+    action => accept,
+}
