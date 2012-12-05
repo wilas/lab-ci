@@ -18,6 +18,7 @@ class gitolite3::gitweb {
     #    more here: https://wincent.com/wiki/Troubleshooting_suexec_errors
     #
 
+    $server_address = $ipaddress_eth1
 
     $projects_list = "${gitolite3::gitolite3_dir}/projects.list"
     $projectsroot = "${gitolite3::gitolite3_dir}/repositories"

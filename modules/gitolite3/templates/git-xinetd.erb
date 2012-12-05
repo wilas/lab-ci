@@ -10,6 +10,6 @@ service git
         user            = nobody
         group           = gitolite3
         server          = /usr/libexec/git-core/git-daemon
-        server_args     = --base-path=/var/lib/gitolite3/repositories --enable=receive-pack --syslog --inetd --verbose
+        server_args     = --base-path=/var/lib/gitolite3/repositories --syslog --inetd --verbose
         log_on_failure  += USERID
 }

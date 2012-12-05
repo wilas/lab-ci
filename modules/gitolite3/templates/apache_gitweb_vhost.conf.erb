@@ -1,12 +1,13 @@
 <VirtualHost *:80>
 
     Alias /gitweb <%=gitweb_cgi_dir%>
-
-    SuexecUserGroup <%=gitweb_user%> <%=gitweb_group%>
+    ScriptAlias /git/ /usr/libexec/git-core/git-http-backend/
+    
+    #SuexecUserGroup <%=gitweb_user%> <%=gitweb_group%>
     #SetEnv GITWEB_CONFIG /etc/gitweb.conf
 
-    ##SetEnv GIT_PROJECT_ROOT <%=projectsroot%>
-    ##SetEnv GIT_HTTP_EXPORT_ALL
+    SetEnv GIT_PROJECT_ROOT <%=projectsroot%>
+    SetEnv GIT_HTTP_EXPORT_ALL
     ##SetEnv GITOLITE_HTTP_HOME /var/lib/gitolite3            
 
     ServerName guillotine.to
@@ -28,5 +29,15 @@
         DirectoryIndex gitweb.cgi
 
     </Directory>
+
+    #Without authentication only the upload-pack service is enabled (read-only)
+    <LocationMatch "^/git/.*/git-receive-pack$">
+        order allow,deny
+        Allow from all
+        # AuthType Basic
+        # AuthName "Private Git Access"
+        # AuthUserFile /usr/local/apache/passwd/passwords
+        # Require valid-user
+    </LocationMatch>
 
 </VirtualHost>

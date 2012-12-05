@@ -5,8 +5,8 @@ CI: gitolite + gitweb; jenkins + TDD:... + BDD:...
 ## VM description:
 
  - OS: Scientific linux 6
- - git server: guillotine
- - jenkins server: headsman
+ - git server: guillotine.farm
+ - jenkins server: headsman.farm
 
 ## Good to know
 
@@ -31,7 +31,7 @@ CI: gitolite + gitweb; jenkins + TDD:... + BDD:...
     }
 ```
 
-### enable repo in gitweb (test: 77.77.77.131/gitweb):
+### enable repo in gitweb 
 
 ```
 repo red
@@ -39,7 +39,11 @@ repo red
     R                   =   gitweb
 ```
 
-### enable repo in git-daemon (test: git clone git://77.77.77.131/red.git):
+test in webbrowser: 77.77.77.131/gitweb
+
+(read-only or set-up apache-auth.) test by run: `git clone http://77.77.77.131/git/red.git`
+
+### enable repo in git-daemon (read-only)
 
 ```
 repo red
@@ -47,16 +51,19 @@ repo red
     R                   =   daemon
 ```
 
+test by run: `git clone git://77.77.77.131/red.git`
+
 ## Bibliography
 
 ### Git
 
- - github book: http://git-scm.com/book/en/Git-on-the-Server-Setting-Up-the-Server
+ - !!! git protocols in github book: http://git-scm.com/book/en/Git-on-the-Server-The-Protocols
+ - git in github book: http://git-scm.com/book/en/Git-on-the-Server-Setting-Up-the-Server
  - how to setup own git server: http://tumblr.intranation.com/post/766290565/how-set-up-your-own-private-git-server-linux
 
 ### Gitolite
 
- - github book: http://git-scm.com/book/en/Git-on-the-Server-Gitolite
+ - gitolite in github book: http://git-scm.com/book/en/Git-on-the-Server-Gitolite
  - !!! adding and removing repos: http://sitaramc.github.com/gitolite/repos.html
  - moving pre-existing repos: http://sitaramc.github.com/gitolite/g2/moverepos.html
  - subconf command: http://sitaramc.github.com/gitolite/g2incompat.html#g2i-name
@@ -66,11 +73,14 @@ repo red
 
 ### Gitweb
 
- - github book: http://git-scm.com/book/en/Git-on-the-Server-GitWeb
- - gitweb on centos6, git-deamon: http://monkeyswithbuttons.wordpress.com/2012/03/28/gitolite-git-daemon-gitweb-on-centos-6/
+ - gitweb in github book: http://git-scm.com/book/en/Git-on-the-Server-GitWeb
+ - !!! gitweb on centos6, git-deamon: http://monkeyswithbuttons.wordpress.com/2012/03/28/gitolite-git-daemon-gitweb-on-centos-6/
+ - !!! git-http-backend: http://www.kernel.org/pub/software/scm/git/docs/git-http-backend.html
+ - smart-http - gitolite author (suexec): http://sitaramc.github.com/gitolite/g2/ggshb.html
+ - !!! smart-http and ldap auth.: http://loutilities.wordpress.com/2011/08/12/setting-up-git-with-apache-smart-https-and-ldap/
+ - smart-http in github book: http://git-scm.com/2010/03/04/smart-http.html
  - suexec wrapper: http://linuxadminzone.com/quickly-setup-git-server-with-gitolite-gitweb-ssh-and-http-auth/
- - suexec wrapper - gitolite author: http://sitaramc.github.com/gitolite/g2/ggshb.html
- - gitolite user/group uid/gid for gitweb: https://wincent.com/wiki/Troubleshooting_suexec_errors
+ - gitolite uid/gid>500 for gitweb: https://wincent.com/wiki/Troubleshooting_suexec_errors
 
 ### Jenkins
 
@@ -78,7 +88,7 @@ repo red
 
 ## Copyright and license
 
-Copyright 2012, the ci-ippon authors
+Copyright 2012, Kamil Wilas (wilas.pl)
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this work except in compliance with the License.

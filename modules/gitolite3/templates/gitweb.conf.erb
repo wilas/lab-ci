@@ -12,8 +12,7 @@ our $projects_list = "<%=projects_list%>";
 
 # Set the list of git base URLs used for URL to where fetch project from, i.e.
 # the full URL is "$git_base_url/$project". By default this is empty
-#our @git_base_url_list = qw(git://git.example.com
-#                            ssh://git.example.com/var/lib/git);
+our @git_base_url_list = qw( ssh://gitolite3@<%=server_address%> [read-only]->http://<%=server_address%>/git [read-only]->git://<%=server_address%> );
 
 # Enable the 'blame' blob view, showing the last commit that modified
 # each line in the file. This can be very CPU-intensive. Disabled by default
