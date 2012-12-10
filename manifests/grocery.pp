@@ -47,21 +47,21 @@ git::repo { "trout":
 class {"gitolite3":}
 # repos
 gitolite3::repo { "blue":
-    conf_file => "/vagrant/samples/blue.conf",
+    conf_file => "/vagrant/samples/repos_garden/blue.conf",
     ensure    => present,
 }
 gitolite3::repo { "red":
-    conf_file => "/vagrant/samples/red.conf",
+    conf_file => "/vagrant/samples/repos_garden/red.conf",
     ensure    => present,
-    bare_src  => "/vagrant/samples/red.git",
+    bare_src  => "/vagrant/samples/repos_garden/red.git",
 }
 gitolite3::repo { "green":
-    conf_file => "/vagrant/samples/green.conf",
+    conf_file => "/vagrant/samples/repos_garden/green.conf",
     ensure    => absent,
 }
 # users
 gitolite3::guser { "redman":
-    key_file => "/vagrant/samples/id_rsa.redman.pub",
+    key_file => "/vagrant/samples/repos_garden/id_rsa.redman.pub",
     ensure   => present,
 }
 

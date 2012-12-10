@@ -1,12 +1,15 @@
 # Description
 
-CI: gitolite + gitweb; jenkins + TDD:... + BDD:...
+Build continuous integration quazi development environment:
+  - git repos easy in restore  (gitolite, gitweb and git-daemon), 
+  - jenkins with extra plugins (e.g. git), jobs to automate tests check
+  - TDD and BDD for python and javascript (alos simple app)
 
 ## VM description:
 
  - OS: Scientific linux 6
- - git server: guillotine.farm
- - jenkins server: headsman.farm
+ - git server: grocery.farm
+ - jenkins server: cook.farm
 
 ## Good to know
 
@@ -15,8 +18,8 @@ CI: gitolite + gitweb; jenkins + TDD:... + BDD:...
 ```ruby
 
     gitolite3::repo { "blue":
-        conf_file => "/vagrant/sample/blue.conf",
         ensure    => present,
+        conf_file => "/vagrant/sample/blue.conf",
     }
 ```
 
@@ -25,8 +28,8 @@ CI: gitolite + gitweb; jenkins + TDD:... + BDD:...
 ```ruby
 
     gitolite3::repo { "red":
-        conf_file => "/vagrant/sample/red.conf",
         ensure    => present,
+        conf_file => "/vagrant/sample/red.conf",
         bare_src  => "/vagrant/sample/red.git",
     }
 ```
@@ -41,7 +44,7 @@ repo red
 
 test in webbrowser: 77.77.77.131/gitweb
 
-(read-only or set-up apache-auth.) test by run: `git clone http://77.77.77.131/git/red.git`
+test by run (read-only or set-up apache-auth.):  `git clone http://77.77.77.131/git/red.git`
 
 ### enable repo in git-daemon (read-only)
 
@@ -69,7 +72,7 @@ test by run: `git clone git://77.77.77.131/red.git`
  - subconf command: http://sitaramc.github.com/gitolite/g2incompat.html#g2i-name
  - do not panic: http://sitaramc.github.com/gitolite/emergencies.html
  - example group and repositories config.: http://www.frederikkonietzny.de/2012/08/how-to-install-gitolite-and-git-web-on-ubuntu-12-04/
- - gilolite step by step: http://www.bigfastblog.com/gitolite-installation-step-by-step
+ - gitolite step by step: http://www.bigfastblog.com/gitolite-installation-step-by-step
 
 ### Gitweb
 
@@ -85,6 +88,35 @@ test by run: `git clone git://77.77.77.131/red.git`
 ### Jenkins
 
  - hpage: http://jenkins-ci.org/
+ - install jenkins: https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+RedHat+distributions
+
+### TDD
+
+ - python:
+   - nose intro: http://ivory.idyll.org/articles/nose-intro.html
+   - nose howto: https://nose.readthedocs.org/en/latest/writing_tests.html
+ - javascript:
+   - mocha
+
+### BDD
+
+ - python:
+   - behave: http://packages.python.org/behave/tutorial.html
+ - javascript:
+   - jasmine
+   - vows
+
+### Python Zone
+
+ - pythonbrew: https://github.com/utahta/pythonbrew
+ - pip: http://www.pip-installer.org/en/latest/other-tools.html#pip-compared-to-easy-install
+ - virtualenv: 
+ - simplejson vs json lib.: http://stackoverflow.com/questions/712791/json-and-simplejson-module-differences-in-python
+
+### Json
+
+ - JSON structure: http://www.json.org/
+
 
 ## Copyright and license
 
