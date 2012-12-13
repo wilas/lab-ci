@@ -21,13 +21,12 @@ class TestPlay:
         """This method is run once after _each_ test method is executed"""
         print "\nsoup = ", self.soup
         print "pasta = ", self.pasta
-    
 
     def test_1(self):
         pass
-    
+
     def test_2(self):
         pass
-    
+
     def test_3(self):
         pass

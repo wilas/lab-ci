@@ -1,9 +1,9 @@
 from multiprocessing import Process
-from selenium import webdriver
-import beer
-
 from wsgiref.validate import validator
 from wsgiref.simple_server import make_server
+import selenium.webdriver
+
+import beer
 
 
 def before_all(context):
@@ -12,7 +12,7 @@ def before_all(context):
     context.wsgi = make_server("", 8000, validator(beer.app))
     context.server = Process(target=context.wsgi.serve_forever)
     context.server.start()
-    context.browser = webdriver.Firefox()
+    context.browser = selenium.webdriver.Firefox()
 
     # Example:
     # context.browser.get(context.baseurl)

@@ -1,5 +1,3 @@
-from behave import *
-
 @given('we have simple test')
 def step(context):
     context.accept = 1

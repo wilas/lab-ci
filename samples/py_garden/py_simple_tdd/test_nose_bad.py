@@ -1,4 +1,4 @@
-from nose.tools import *
+from nose.tools import with_setup
 
 # http://stackoverflow.com/questions/10565523/how-can-i-access-variables-set-in-the-python-nosetests-setup-function
 # A third variant might be to use a dictionary for your values. This is slightly less ugly but horribly clumsy:

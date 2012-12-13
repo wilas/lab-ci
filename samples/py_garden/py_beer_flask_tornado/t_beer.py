@@ -1,13 +1,14 @@
-from tornado.wsgi import WSGIContainer
-from tornado.httpserver import HTTPServer
-from tornado.ioloop import IOLoop
+import tornado.wsgi
+import tornado.httpserver
+import tornado.ioloop
 
-from beer import app
+import beer
 
 def run(address="127.0.0.1", port=5000):
-    http_server = HTTPServer(WSGIContainer(app))
+    application = tornado.wsgi.WSGIContainer(beer.app)
+    http_server = tornado.httpserver.HTTPServer(application)
     http_server.listen(port,address)
-    IOLoop.instance().start()
+    tornado.ioloop.IOLoop.instance().start()
 
 if __name__ == "__main__":
     run()

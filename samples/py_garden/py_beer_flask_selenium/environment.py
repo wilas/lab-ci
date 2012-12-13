@@ -1,5 +1,6 @@
 from multiprocessing import Process
-from selenium import webdriver
+import selenium.webdriver
+
 import beer
 
 
@@ -7,7 +8,7 @@ def before_all(context):
     context.baseurl = "http://127.0.0.1:8000/"
     context.server = Process(target=beer.app.run, args=("", 8000))
     context.server.start()
-    context.browser = webdriver.Firefox()
+    context.browser = selenium.webdriver.Firefox()
 
     # Example:
     # context.browser.get(context.baseurl)
