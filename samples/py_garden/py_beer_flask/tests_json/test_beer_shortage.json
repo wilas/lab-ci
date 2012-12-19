@@ -1,6 +1,6 @@
-{ 
+{
 "name": "Beer Pong",
-"box": { "ale": [ 
+"box": { "ale": [
             { "name":"Old Speckled Hen", "strength":"5.2", "colour":"amber", "country_code":"GBR", "pints":50 },
             { "name":"London Pride", "strength":"4.7", "colour":"amber", "country_code":"GBR", "pints":0 },
             { "name":"Fuller's Chiswick Bitter", "strength":"3.5", "colour":"gold-amber", "country_code":"GBR", "pints":60 }

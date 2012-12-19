@@ -1,12 +1,9 @@
+# -*- coding: utf-8 -*-
 import beer
-
 
 def before_all(context):
     beer.app.config['TESTING'] = True
     context.client = beer.app.test_client()
-    # Example:
-    # page = context.client.get("/")
-    # print page.data
 
 def before_tag(context, tag):
     if 'beerdesc' in tag:

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 import re
 from BeautifulSoup import BeautifulSoup
 
@@ -37,7 +36,7 @@ def step(context,text):
             context.beerslist.append(str(beer_d))
     # check that pattern exist in page.data and we have good example to test
     assert re.search(pattern,context.page.data)
-        
+
 @then('The Beer description is "{text}"')
 def step(context,text):
     for beer_d in context.beerslist:
@@ -45,4 +44,3 @@ def step(context,text):
             assert re.search('color=["\']red["\']', beer_d)
         if text == 'not red':
             assert not re.search('color=["\']red["\']', beer_d)
-
