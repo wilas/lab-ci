@@ -2,9 +2,9 @@ import tornado.wsgi
 import tornado.httpserver
 import tornado.ioloop
 
-import beer
+import beer_app
 
-app = beer.app
+app = beer_app.create_app()
 
 def run(address="127.0.0.1", port=5000):
     application = tornado.wsgi.WSGIContainer(app)

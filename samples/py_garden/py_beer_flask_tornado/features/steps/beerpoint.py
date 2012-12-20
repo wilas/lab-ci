@@ -6,8 +6,7 @@ from BeautifulSoup import BeautifulSoup
 @given('Beer points')
 @when('Looking at home page')
 def step(context):
-    # let the page load
-    time.sleep(0.2)
+    time.sleep(0.2) # let the page load
     context.browser.get(context.baseurl)
     assert context.browser.page_source
 
