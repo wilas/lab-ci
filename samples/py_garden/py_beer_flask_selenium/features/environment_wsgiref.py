@@ -7,7 +7,8 @@ import beer
 
 def before_all(context):
     beer.app.config['TESTING'] = True
-    # DEBUG == False if testing with selenium otherwise it make f*** mess !!!
+    # DEBUG == False if testing flask.app.run with selenium 
+    # otherwise it make f*** mess !!!
     beer.app.config['DEBUG'] = False
     context.baseurl = "http://127.0.0.1:8000/"
     context.browser = selenium.webdriver.Firefox()
