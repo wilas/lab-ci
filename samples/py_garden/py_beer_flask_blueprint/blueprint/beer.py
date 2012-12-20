@@ -1,6 +1,6 @@
 from flask import Blueprint, current_app, render_template, json, g
 
-beerblue = Blueprint('beerblue', __name__, template_folder='templates')
+beerblue = Blueprint('blueprint', __name__, template_folder='templates')
 
 @beerblue.route('/')
 def hello():
