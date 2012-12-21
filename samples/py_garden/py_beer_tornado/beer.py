@@ -1,21 +1,38 @@
+import os
 import tornado.httpserver
 import tornado.ioloop
 import tornado.web
+import tornado.options
+try:
+    import simplejson as json
+except ImportError:
+    import json
 
+tornado.options.define("beer_json", default="beerpoint.json", 
+        help="Json file with beerpoint description")
 
 class BeerHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write("<title>Beer Point</title>lager beer:")
-
+        with open(tornado.options.options.beer_json,'r') as file:
+            gbeer = json.load(file)
+        file.close()
+        name = gbeer['name']
+        beers = gbeer['box']
+        beer_styles = beers.keys()
+        self.render("t_beerpoint.html", name=name, beer_styles=beer_styles, beers=beers)
 
 def run(address='127.0.0.1',port=5000):
-    app = tornado.web.Application([
+    handlers = [
         (r"/", BeerHandler),
-    ])
+    ]
+    settings = dict(
+        template_path=os.path.join(os.path.dirname(__file__), "templates"),
+    )
+    app = tornado.web.Application(handlers, **settings)
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(port,address)
-    tornado.ioloop.IOLoop.instance().start()
-
+    io_loop = tornado.ioloop.IOLoop.instance()
+    io_loop.start()
 
 if __name__ == "__main__":
     run()
