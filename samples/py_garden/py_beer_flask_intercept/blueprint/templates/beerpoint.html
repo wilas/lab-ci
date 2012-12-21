@@ -1,0 +1,19 @@
+<!doctype html>
+<title>Beer Point</title>
+<p>beer point name: {{ name }} </p>
+<p>beer styles:
+ <ul>
+    {% for beer_s in beer_styles %}
+    <li> {{ beer_s }} </li>
+    <ul>
+        {% for beer in beers[beer_s] %}
+            {% if beer['pints'] == 0 %}
+                <li><font color="red">{{ 'name=%s; alcohol=%s%% abv; pints=%s;' % (beer['name'], beer['strength'], beer['pints']) }}</font></li>
+            {% elif beer['pints'] > 0 %}
+                <li>{{ 'name=%s; alcohol=%s%% abv; pints=%s;' % (beer['name'], beer['strength'], beer['pints']) }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</ul>
+</p>

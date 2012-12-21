@@ -1,0 +1,12 @@
+{
+"name": "Kłos Browar",
+"box": {
+         "code żeś": [
+            { "name":"AĄEĘCĆNŃSŚ", "strength":"0.0", "colour":"green", "country_code":"AAA", "pints":10 }
+            ],
+         "code się": [
+            { "name":"AąBbCć", "strength":"0.0", "colour":"green", "country_code":"AAA", "pints":0 }
+            ]
+        }
+}
+
