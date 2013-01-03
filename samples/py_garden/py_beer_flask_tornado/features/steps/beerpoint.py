@@ -18,15 +18,14 @@ def step(context):
 def step(context):
     assert 'Beer Point' in context.browser.title
 
-@then('We see {type} beer style')
-def step(context,type):
-    #print repr(type)
-    #print repr(context.browser.page_source)
-    assert type in context.browser.page_source
+@then('We see beer style types')
+def step(context):
+    for row in context.table:
+        assert row['type'] in context.browser.page_source
 
-@when('Number of pints for a beer is "{text}" 0')
+@when('Number of pints for a beer is {text} 0')
 def step(context,text):
-    # base on text set proper pattern
+    # base on text pattern
     if text == 'equal': pattern = 'pints=0'
     if text == 'greater than': pattern = 'pints=[1-9]'
     # find all beers descriptions
@@ -36,10 +35,10 @@ def step(context,text):
         # beers descriptions maching pattern add to context.beerslist
         if re.search(pattern ,beer_d.text):
             context.beerslist.append(str(beer_d))
-    # check that pattern exist in page.data and we have good example to test
+    # check that pattern exist in page and we have good example to test
     assert re.search(pattern,context.browser.page_source)
 
-@then('The Beer description is "{text}"')
+@then('The Beer description is {text}')
 def step(context,text):
     for beer_d in context.beerslist:
         if text == 'red':

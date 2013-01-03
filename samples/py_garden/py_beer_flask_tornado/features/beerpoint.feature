@@ -5,10 +5,9 @@ Feature: Good beer
         Then We see beer point name
         And We see Beer Point in title
 
-    Scenario Outline: Amazing beer choices
+    Scenario: Amazing beer choices
         When Looking at home page
-        Then We see <type> beer style
-        Examples: BeerStyle
+        Then We see beer style types
             | type          |
             | brown ale     |
             | pale ale      |
@@ -21,22 +20,19 @@ Feature: Good beer
             | dark lager    |
 
     @encode 
-    Scenario Outline: Encode beer style
+    Scenario: Encode beer style
         When Looking at home page
-        Then We see <type> beer style
-        Examples: BeerEncode
+        Then We see beer style types
             | type          |
             | code żeś      |
             | code się      |
 
     @wip @beerdesc
-    Scenario: Beer shortage colour
+    Scenario Outline: Beer description colour
         Given Beer points
-        When Number of pints for a beer is "equal" 0
-        Then The Beer description is "red"
-
-    @wip @beerdesc
-    Scenario: Beer description colour
-        Given Beer points
-        When Number of pints for a beer is "greater than" 0
-        Then The Beer description is "not red"
+        When Number of pints for a beer is <relation> 0
+        Then The Beer description is <colour>
+        Examples: Beer desc
+            | relation      | colour    |
+            | equal         | red       |
+            | greater than  | not red   |
