@@ -2,7 +2,7 @@
 import re
 from BeautifulSoup import BeautifulSoup
 
-@given('Beer points')
+@given('Beer point')
 @when('Looking at home page')
 def step(context):
     response = context.browser.open(context.baseurl)
@@ -13,17 +13,17 @@ def step(context):
 def step(context):
     assert re.search('beer point name: \w+', context.page)
 
-@then('We see Beer Point in title')
-def step(context):
-    assert '<title>Beer Point</title>' in context.page
+@then('We see "{text}" in title')
+def step(context, text):
+    assert '<title>%s</title>' % text in context.page
 
-@then('We see beer style types')
+@then('We see beer styles')
 def step(context):
     for row in context.table:
         assert row['type'] in context.page
 
 @when('Number of pints for a beer is {text} 0')
-def step(context,text):
+def step(context, text):
     # base on text pattern
     if text == 'equal': pattern = 'pints=0'
     if text == 'greater than': pattern = 'pints=[1-9]'
@@ -38,7 +38,7 @@ def step(context,text):
     assert re.search(pattern,context.page)
 
 @then('The Beer description is {text}')
-def step(context,text):
+def step(context, text):
     for beer_d in context.beerslist:
         if text == 'red':
             assert re.search('color=["\']red["\']', beer_d)

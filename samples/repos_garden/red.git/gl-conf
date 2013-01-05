@@ -1,8 +1,22 @@
 %one_repo = (
   'red' => {
+    'daemon' => [
+      [
+        4,
+        'R',
+        'refs/.*'
+      ]
+    ],
+    'gitweb' => [
+      [
+        5,
+        'R',
+        'refs/.*'
+      ]
+    ],
     'redman' => [
       [
-        2,
+        3,
         'RW+',
         'refs/.*'
       ]

@@ -79,3 +79,10 @@ firewall { "100 allow git-deamon":
     proto  => 'tcp',
     action => accept,
 }
+
+#use for CI 
+gitolite3::repo { "py_beer_flask":
+    conf_file => "/vagrant/samples/repos_garden/py_beer_flask.conf",
+    ensure    => present,
+}
+
