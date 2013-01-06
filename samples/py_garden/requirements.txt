@@ -1,0 +1,11 @@
+BeautifulSoup==3.2.1
+Flask==0.9
+behave==1.2.2
+coverage==3.6b3
+mechanize==0.2.5
+nose==1.2.1
+selenium==2.28.0
+simplejson==3.0.5
+tornado==2.4.1
+twill==0.9
+wsgi-intercept==0.5.1
