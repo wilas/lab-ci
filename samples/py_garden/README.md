@@ -71,8 +71,8 @@ Choose one of methods:
  - Then: we observe outcomes (should be related to the business value/benefit in your feature description)
 
  Feature example:
-```
 
+```
 Feature: Good beer point
 
     Scenario: Checking that beer point exist
@@ -93,7 +93,6 @@ Feature: Good beer point
             | wheat         |
             | pale lager    |
             | dark lager    |
-
 ```
 
 ## Pure flask (py_beer_flask{,_blueprint})
