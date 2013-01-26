@@ -144,6 +144,7 @@ Feature: Good beer point
  but we only want to create the WSGI app object once.' - http://ivory.idyll.org/articles/twill-and-wsgi_intercept.html
 ```
     cat py_beer_flask_twill/features/environment.py
+
     --> twill.add_wsgi_intercept('127.0.0.1', 8000, lambda : context.app)
 ```
  - Links:
