@@ -100,11 +100,13 @@ Feature: Good beer point
 ## Pure flask (py_beer_flask{,_blueprint})
 
  - use werkzeug client: http://flask.pocoo.org/docs/testing/
+
 ```
         cat py_beer_flask/features/environment.py
         --> context.client = beer.app.test_client()
 ```
  - allow change test configuration in fly
+
 ```
         cat py_beer_flask/features/environment.py
         --> beer.app.config['BEER_JSON'] = 'tests_json/test_beer_shortage.json'
