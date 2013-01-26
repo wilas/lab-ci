@@ -101,16 +101,16 @@ Feature: Good beer point
 
  - use werkzeug client: http://flask.pocoo.org/docs/testing/
 
-```
+    ```
         cat py_beer_flask/features/environment.py
         --> context.client = beer.app.test_client()
-```
+    ```
  - allow change test configuration in fly
 
-```
+    ```
         cat py_beer_flask/features/environment.py
         --> beer.app.config['BEER_JSON'] = 'tests_json/test_beer_shortage.json'
-```
+    ```
  - fast execution
 
 
@@ -146,10 +146,10 @@ Feature: Good beer point
  - caching app object needed: 'the function passed into wsgi_intercept is called once for each intercepted connection, 
  but we only want to create the WSGI app object once.' - http://ivory.idyll.org/articles/twill-and-wsgi_intercept.html
 
-```
-    cat py_beer_flask_twill/features/environment.py
-    --> twill.add_wsgi_intercept('127.0.0.1', 8000, lambda : context.app)
-```
+    ```
+        cat py_beer_flask_twill/features/environment.py
+        --> twill.add_wsgi_intercept('127.0.0.1', 8000, lambda : context.app)
+    ```
  - Links:
     - hpage: http://twill.idyll.org/
     - src code: http://pydoc.net/twill/latest/
