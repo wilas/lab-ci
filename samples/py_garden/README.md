@@ -59,18 +59,20 @@ Choose one of methods:
 
 ## General behave information
 
- Links:
+Links:
  - Behave tutorial: http://packages.python.org/behave/tutorial.html
  - Gherkin: http://packages.python.org/behave/gherkin.html
  - Environmental control: http://packages.python.org/behave/tutorial.html#environmental-controls
  - Cucumber book: http://pragprog.com/book/hwcuc/the-cucumber-book
 
- Behave cheet sheet:
+
+Behave cheet sheet:
  - Given: put the system in a known state before the user (or external system) starts interacting with the system. 
  - When: describe the key action (This is the interaction with your system which should (or perhaps should not) cause some state to change)
  - Then: we observe outcomes (should be related to the business value/benefit in your feature description)
 
- Feature example:
+
+Feature example:
 
 ```
 Feature: Good beer point
@@ -98,15 +100,15 @@ Feature: Good beer point
 ## Pure flask (py_beer_flask{,_blueprint})
 
  - use werkzeug client: http://flask.pocoo.org/docs/testing/
- ```
- cat py_beer_flask/features/environment.py
- context.client = beer.app.test_client()
- ```
+    ```
+        cat py_beer_flask/features/environment.py
+        --> context.client = beer.app.test_client()
+    ```
  - allow change test configuration in fly
- ```
- cat py_beer_flask/features/environment.py
- beer.app.config['BEER_JSON'] = 'tests_json/test_beer_shortage.json'
- ```
+    ```
+        cat py_beer_flask/features/environment.py
+        --> beer.app.config['BEER_JSON'] = 'tests_json/test_beer_shortage.json'
+    ```
  - fast execution
 
 
@@ -141,8 +143,8 @@ Feature: Good beer point
  - caching app object needed: 'the function passed into wsgi_intercept is called once for each intercepted connection, 
  but we only want to create the WSGI app object once.' - http://ivory.idyll.org/articles/twill-and-wsgi_intercept.html
  ```
- cat py_beer_flask_twill/features/environment.py
- --> twill.add_wsgi_intercept('127.0.0.1', 8000, lambda : context.app)
+    cat py_beer_flask_twill/features/environment.py
+    --> twill.add_wsgi_intercept('127.0.0.1', 8000, lambda : context.app)
  ```
  - Links:
     - hpage: http://twill.idyll.org/
@@ -164,10 +166,7 @@ Feature: Good beer point
 
 ## Flask in Tornado - tests supported by selenium (py_beer_flask_tornado)
  - same as flask with selenium
- - sample/howto run flask in tornado:
- ```
-    cat py_beer_flask_tornado/t_beer.py
- ```
+ - sample/howto run flask in tornado: `py_beer_flask_tornado/t_beer.py`
  - Links:
     - ! run flask in tornado service: http://flask.pocoo.org/docs/deploying/others/
     - mix flask with tornado: https://gist.github.com/1441063
@@ -176,10 +175,7 @@ Feature: Good beer point
 
 ## Tornado App - tests supported by selenium (py_beer_tornado)
  - same as flask with selenium
- - sample tornado app:
- ```
-    cat py_beer_tornado/beer.py
- ```
+ - sample tornado app: `py_beer_tornado/beer.py`
  - Links:
     - tornado hello world: https://github.com/facebook/tornado/blob/master/demos/helloworld/helloworld.py
     - tornado wsgi test: https://github.com/facebook/tornado/blob/master/tornado/test/wsgi_test.py
