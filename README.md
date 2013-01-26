@@ -1,19 +1,21 @@
 # Description
 
 Build continuous integration quazi development environment:
-  - git repos easy in restore  (gitolite, gitweb and git-daemon), 
-  - jenkins with extra plugins (e.g. git), jobs to automate tests check
-  - TDD and BDD for python and javascript (alos simple app)
+  - git repos easy in restore (gitolite, gitweb and git-daemon)
+  - jenkins with extra plugins (e.g. git), jobs to automate tests
+  - TDD/BDD for python (flask/tornado beerpoint apps) - <a href="samples/py-garden">py-garden/</a>
+  - TODO: TDD/BDD for javascript (simple apps)
 
 ## VM description:
 
  - OS: Scientific linux 6
  - git server: grocery.farm
  - jenkins server: cook.farm
+ - python play server: locro.farm
 
-## Good to know
+## Git Zone
 
-### gitolite3::repo - create new empty:
+### gitolite3::repo - create new empty repo:
 
 ```ruby
 
@@ -23,7 +25,7 @@ Build continuous integration quazi development environment:
     }
 ```
 
-### gitolite3::repo - restore bare:
+### gitolite3::repo - restore bare repo:
 
 ```ruby
 
@@ -34,7 +36,7 @@ Build continuous integration quazi development environment:
     }
 ```
 
-### enable repo in gitweb 
+### enable repo for gitweb 
 
 ```
 repo red
@@ -89,33 +91,6 @@ test by run: `git clone git://77.77.77.131/red.git`
 
  - hpage: http://jenkins-ci.org/
  - install jenkins: https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+RedHat+distributions
-
-### TDD
-
- - python:
-   - nose intro: http://ivory.idyll.org/articles/nose-intro.html
-   - nose howto: https://nose.readthedocs.org/en/latest/writing_tests.html
- - javascript:
-   - mocha
-
-### BDD
-
- - python:
-   - behave: http://packages.python.org/behave/tutorial.html
- - javascript:
-   - jasmine
-   - vows
-
-### Python Zone
-
- - pythonbrew: https://github.com/utahta/pythonbrew
- - pip: http://www.pip-installer.org/en/latest/other-tools.html#pip-compared-to-easy-install
- - virtualenv: 
- - simplejson vs json lib.: http://stackoverflow.com/questions/712791/json-and-simplejson-module-differences-in-python
-
-### Json
-
- - JSON structure: http://www.json.org/
 
 
 ## Copyright and license

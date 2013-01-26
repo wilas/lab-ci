@@ -15,7 +15,6 @@ class BeerHandler(tornado.web.RequestHandler):
     def get(self):
         with open(tornado.options.options.beer_json,'r') as file:
             gbeer = json.load(file)
-        file.close()
         name = gbeer['name']
         beers = gbeer['box']
         beer_styles = beers.keys()

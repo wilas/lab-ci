@@ -20,7 +20,6 @@ def hello():
 def before_request():
     with open(app.config['BEER_JSON'],'r') as file:
         g.beer = json.load(file)
-    file.close()
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)

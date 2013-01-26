@@ -14,4 +14,3 @@ def hello():
 def before_request():
     with open(current_app.config['BEER_JSON'],'r') as file:
         g.beer = json.load(file)
-    file.close()
