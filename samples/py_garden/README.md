@@ -122,6 +122,7 @@ Feature: Good beer point
     - loading page take time - needed timer to give page a time to load 
     - X required
     if use locro then X forwarding needed (proper package are already installed):
+
     ```
         ssh -X root@77.77.77.133 #locro
     ```
@@ -144,6 +145,7 @@ Feature: Good beer point
  - fast execution
  - caching app object needed: 'the function passed into wsgi_intercept is called once for each intercepted connection, 
  but we only want to create the WSGI app object once.' - http://ivory.idyll.org/articles/twill-and-wsgi_intercept.html
+
 ```
     cat py_beer_flask_twill/features/environment.py
     --> twill.add_wsgi_intercept('127.0.0.1', 8000, lambda : context.app)
