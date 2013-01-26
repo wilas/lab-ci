@@ -12,7 +12,7 @@ Created for fun and as an example flask and/or tornado app.
 
 Choose one of methods:
 
-1. Use pip (You may consider using virtualenv[http://www.virtualenv.org/en/latest/] to create isolated Python environments.):
+1. Use pip (You may consider using [virtualenv](http://www.virtualenv.org/en/latest/) to create isolated Python environments.):
 ```
     easy_install pip
     pip install -r requirements.txt
