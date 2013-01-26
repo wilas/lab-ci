@@ -3,7 +3,7 @@
 Build continuous integration quazi development environment:
   - git repos easy in restore (gitolite, gitweb and git-daemon)
   - jenkins with extra plugins (e.g. git), jobs to automate tests
-  - TDD/BDD for python (flask/tornado beerpoint apps) - [py-garden](samples/py_garden/)
+  - TDD/BDD for python (flask/tornado beerpoint apps) - [py-garden](ci-soup/tree/master/samples/py_garden)
   - TODO: TDD/BDD for javascript (simple apps)
 
 ## VM description:
