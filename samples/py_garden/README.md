@@ -112,13 +112,18 @@ Feature: Good beer point
         --> beer.app.config['BEER_JSON'] = 'tests_json/test_beer_shortage.json'
     ```
  - fast execution
+ - more designed for testing API responses then UI
+ - in-process testing
 
 
 ## Tests supported by selenium (py_beer_flask_selenium)
 
  - compatible with several browser automation tools
+ - out-of-process testing
+ - good for testing UI
  - lauch webbrowser and make 'live' test
     - good for complex testing e.g with javascript
+    - full interaction with browser (back, forward, reload, cookies
     - loading page take time - needed timer to give page a time to load 
     - X required
     if use locro then X forwarding needed (proper package are already installed):
@@ -133,8 +138,9 @@ Feature: Good beer point
     - python selenium lib: http://pypi.python.org/pypi/selenium
     - python selenium docs: http://selenium-python.readthedocs.org/en/latest/index.html
     - example: http://testingbot.com/support/getting-started/behave.html
+    - selenium standalone: https://gist.github.com/daemianmack/1099713
     - simple WSGI HTTP server - wsgiref.simple_server: http://docs.python.org/2/library/wsgiref.html#module-wsgiref.simple_server
-    - high-level wrapper for Selenium - Splinter: http://splinter.cobrateam.info/docs/
+    - !! high-level wrapper for Selenium (more pythonic) - Splinter: http://splinter.cobrateam.info/docs/
 
 
 ## Tests supported by twill (py_beer_flask_twill)
@@ -143,6 +149,7 @@ Feature: Good beer point
  - simple and a lot of functions (faster then selenium, no webbrowser needed)
  - allow change test configuration in fly
  - fast execution
+ - twill is dead (last version 0.9 released 2007) but still useful for easyfying browser-like tasks
  - caching app object needed: 'the function passed into wsgi_intercept is called once for each intercepted connection, 
  but we only want to create the WSGI app object once.' - http://ivory.idyll.org/articles/twill-and-wsgi_intercept.html
 
@@ -159,7 +166,7 @@ Feature: Good beer point
 
 ## Tests supported by wsgi_intercept + mechanize (py_beer_flask_intercept) 
 
- - simple but everything must be parse manually (e.g. find form to submit)
+ - simple but everything must be parse manually (e.g. find form to submit): no methods for matching text in responses
  - allow change test configuration in fly
  - fast execution
  - Links:
@@ -191,6 +198,9 @@ Feature: Good beer point
  - lettuce: http://lettuce.it/
  - pycukes: http://pypi.python.org/pypi/pycukes/0.1
 
+## Other libs for testing wsgi apps:
+ - webtest: http://webtest.pythonpaste.org/en/latest/
+
 ## Flask
  - blueprint: http://flask.pocoo.org/docs/blueprints/
  - factories, conf_name: http://flask.pocoo.org/docs/patterns/appfactories/
@@ -205,5 +215,4 @@ Feature: Good beer point
  - options (useful to change conf.): http://www.tornadoweb.org/documentation/options.html
  - !!! overview: http://www.tornadoweb.org/documentation/overview.html
  - template: http://www.tornadoweb.org/documentation/template.html
-
 
