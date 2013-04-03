@@ -123,7 +123,7 @@ Feature: Good beer point
  - good for testing UI
  - lauch webbrowser and make 'live' test
     - good for complex testing e.g with javascript
-    - full interaction with browser (back, forward, reload, cookies
+    - full interaction with browser (back, forward, reload, cookies, etc.)
     - loading page take time - needed timer to give page a time to load 
     - X required
     if use locro then X forwarding needed (proper package are already installed):
