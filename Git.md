@@ -10,6 +10,8 @@
     }
 ```
 
+test by run:  `git clone ssh://gitolite3@77.77.77.131/blue.git`
+
 ### gitolite3::repo - restore bare repo:
 
 ```ruby
@@ -21,6 +23,8 @@
     }
 ```
 
+test by run:  `git clone ssh://gitolite3@77.77.77.131/red.git`
+
 ### enable repo for gitweb (vim red.conf)
 
 ```
@@ -29,7 +33,7 @@ repo red
     R                   =   gitweb
 ```
 
-test in webbrowser: 77.77.77.131/gitweb
+test in webbrowser: `77.77.77.131/gitweb`
 
 test by run (read-only or set-up apache-auth.):  `git clone http://77.77.77.131/git/red.git`
 

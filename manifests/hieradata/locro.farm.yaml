@@ -1,0 +1,4 @@
+---
+classes :
+    - 'pyzone::pip'
+    - 'pyzone::beerpoint'

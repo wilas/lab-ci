@@ -2,7 +2,7 @@
 
  - hpage: http://jenkins-ci.org/
  - install jenkins: https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+RedHat+distributions
-
+ - play arena: `http://77.77.77.132:8080/`
 
 ### Jenkins + UI tests:
 

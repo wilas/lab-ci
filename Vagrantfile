@@ -13,6 +13,7 @@ Vagrant::Config.run do |config|
     node_config.vm.share_folder "v-root", "/vagrant", "."
 
     node_config.vm.provision :puppet do |puppet|
+        puppet.options = "--hiera_config hiera.yaml"
         puppet.manifests_path = "manifests"
         puppet.manifest_file  = "grocery.pp"
         puppet.module_path = "modules"
@@ -29,6 +30,7 @@ Vagrant::Config.run do |config|
     node_config.vm.share_folder "v-root", "/vagrant", "."
 
     node_config.vm.provision :puppet do |puppet|
+        puppet.options = "--hiera_config hiera.yaml"
         puppet.manifests_path = "manifests"
         puppet.manifest_file  = "cook.pp"
         puppet.module_path = "modules"
@@ -45,6 +47,7 @@ Vagrant::Config.run do |config|
     node_config.vm.share_folder "v-root", "/vagrant", "."
 
     node_config.vm.provision :puppet do |puppet|
+        puppet.options = "--hiera_config hiera.yaml"
         puppet.manifests_path = "manifests"
         puppet.manifest_file  = "locro.pp"
         puppet.module_path = "modules"

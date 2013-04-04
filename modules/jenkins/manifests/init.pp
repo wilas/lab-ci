@@ -37,5 +37,4 @@ class jenkins {
         hasstatus  => true,
         require    => Package["jenkins"],
     }
-
 }

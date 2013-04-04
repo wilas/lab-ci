@@ -1,0 +1,5 @@
+---
+classes :
+#    - 'git'
+    - 'gitolite3'
+    - 'gitolite3::gitweb'

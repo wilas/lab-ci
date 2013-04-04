@@ -1,22 +1,6 @@
-stage { "base": before => Stage["main"] }
-stage { "last": require => Stage["main"] }
+# Python apps
 
-# basic config
-class { "install_repos": stage => "base" }
-class { "basic_package": stage => "base" }
-class { "user::root": stage    => "base"}
-
-# /etc/hosts
-host { "$fqdn":
-    ip           => "$ipaddress_eth1",
-    host_aliases => "$hostname",
-}
-
-# firewall manage
-service { "iptables":
-    ensure => running,
-    enable => true,
-}
+# Node global
 exec { 'clear-firewall':
     command     => '/sbin/iptables -F',
     refreshonly => true,
@@ -29,88 +13,23 @@ Firewall {
     subscribe => Exec['clear-firewall'],
     notify    => Exec['persist-firewall'],
 }
-class { "basic_firewall": }
 
-
-# Python Zone
-class pyzone {
-    package {
-        "python":
-            ensure => installed;
-        "python-devel":
-            ensure => installed;
-        "python-setuptools":
-            ensure => installed;
-    }
-    # for RedHat osfamily puppet pip provider require command pip-python (shit !)
-    # version older (now 0.8) then installed by easy_install (1.2.1)
-    # issue: http://projects.puppetlabs.com/issues/15980
-    package {
-        "python-pip":
-            ensure => installed;
-    }
-    #exec { "/usr/bin/easy_install pip":
-    #    subscribe => Package["python-setuptools"],
-    #    require   => Package["python-setuptools"],
-    #    unless    => "/usr/bin/which pip",
-    #}
-}
-class { "pyzone": stage => base, }
-
-# app
-package { 
-    "Flask": 
-        ensure     => "0.9",
-        provider   => pip;
-    "tornado": 
-        ensure     => "2.4.1",
-        provider   => pip;
-    "simplejson": 
-        ensure     => "3.0.5",
-        provider   => pip;
-}
-
-# tests
-package { 
-    "behave":
-        ensure     => "1.2.2",
-        provider   => pip;
-    "nose":
-        ensure     => "1.2.1",
-        provider   => pip;
-    "coverage":
-        ensure     => "3.6b3",
-        provider   => pip;
-}
-
-# tests support
-package {
-    "wsgi-intercept": #intercept
-        ensure     => "0.5.1",
-        provider   => pip;
-    "mechanize": #intercept
-        ensure     => "0.2.5",
-        provider   => pip;
-    "selenium": #selenium, tornado
-        ensure     => "2.28.0",
-        provider   => pip;
-    "twill": #twill
-        ensure     => "0.9",
-        provider   => pip;
-    "BeautifulSoup": #all
-        ensure     => "3.2.1",
-        provider   => pip;
-}
-
-# selenium need X to open webbrowser
-# use `ssh -X root@host` to enables X11 forwarding
-package { ["firefox", "xorg-x11-xauth"]:
-    ensure => installed,
-}
-
-firewall { "100 allow run beers python apps":
+# Include classes - search for classes in *.yaml/*.json files
+hiera_include('classes')
+# Classes order
+Class['yum_repos'] -> Class['basic_package'] -> Class['user::root']
+Class['basic_package'] -> Class['pyzone::pip'] -> Class['pyzone::beerpoint']
+# Extra firewall rules
+firewall { '100 allow run beers python apps':
     state  => ['NEW'],
     dport  => '8000',
     proto  => 'tcp',
     action => accept,
 }
+
+# In real world from DNS
+host { $fqdn:
+    ip           => $ipaddress_eth1,
+    host_aliases => $hostname,
+}
+
