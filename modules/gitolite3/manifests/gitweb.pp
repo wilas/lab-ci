@@ -4,7 +4,7 @@ class gitolite3::gitweb {
     include gitolite3
 
     # Remember open firewall port
-    
+
     # Known issues:
     #  gitweb - apache error 404: No projects found
     #    gitweb.cgi is executed directly, as the httpd user and without any environment settings
@@ -22,78 +22,78 @@ class gitolite3::gitweb {
 
     $projects_list = "${gitolite3::gitolite3_dir}/projects.list"
     $projectsroot = "${gitolite3::gitolite3_dir}/repositories"
-    $gitweb_user = "${gitolite3::user}"
-    $gitweb_group = "${gitolite3::group}"
-    $gitweb_cgi_dir = "/var/www/git"
+    $gitweb_user = $gitolite3::user
+    $gitweb_group = $gitolite3::group
+    $gitweb_cgi_dir = '/var/www/git'
 
 
     # install gitweb and git-daemon
-    package { ["gitweb","git-daemon"]:
+    package { ['gitweb', 'git-daemon']:
         ensure  => installed,
-        require => Package["httpd","gitolite3"],
+        require => Package['httpd','gitolite3'],
     }
-    
+
     # clean after package install
-    file { "/etc/httpd/conf.d/git.conf":
+    file { '/etc/httpd/conf.d/git.conf':
         ensure  => absent,
-        require => Package["gitweb"],
+        require => Package['gitweb'],
     }
-        
+
     # usermod -a -G gitolite3 apache
-    user { "apache":
+    user { 'apache':
         ensure  => present,
-        groups  => "${gitolite3::group}",
-        require => Package["gitweb"],
+        groups  => $gitolite3::group,
+        require => Package['gitweb'],
     }
 
     # gitweb config file
-    file { "/etc/gitweb.conf":
+    file { '/etc/gitweb.conf':
         ensure  => file,
-        mode    => 0644,
-        owner   => "root",
-        group   => "root",
-        content => template("gitolite3/gitweb.conf.erb"),
-        require => Package["gitweb"],
-        notify  => Service["httpd"],
+        mode    => '0644',
+        owner   => 'root',
+        group   => 'root',
+        content => template('gitolite3/gitweb.conf.erb'),
+        require => Package['gitweb'],
+        notify  => Service['httpd'],
     }
 
     # apache vhost
-    file { "/etc/httpd/conf.d/20_gitweb.conf":
+    file { '/etc/httpd/conf.d/20_gitweb.conf':
         ensure  => file,
-        mode    => 0644,
-        owner   => "root",
-        group   => "root",
-        content => template("gitolite3/apache_gitweb_vhost.conf.erb"),
-        require => Package["gitweb"],
-        notify  => Service["httpd"],
+        mode    => '0644',
+        owner   => 'root',
+        group   => 'root',
+        content => template('gitolite3/apache_gitweb_vhost.conf.erb'),
+        require => Package['gitweb'],
+        notify  => Service['httpd'],
     }
-   
+
     # directory in /var/www with cgi script - owner and group
-    file { "${gitweb_cgi_dir}":
+    file { $gitweb_cgi_dir:
         ensure  => directory,
-        owner   => "${gitweb_user}",
-        group   => "${gitweb_group}",
+        owner   => $gitweb_user,
+        group   => $gitweb_group,
         recurse => true,
-        require => Package["gitweb"],
+        require => Package['gitweb'],
     }
 
     # git-deamon + xinetd.d to use git:// protocol
-    file { "/etc/xinetd.d/git":
+    file { '/etc/xinetd.d/git':
         ensure  => file,
-        mode    => 0644,
-        owner   => "root",
-        group   => "root",
-        content => template("gitolite3/git-xinetd.erb"),
-        notify  => Service["xinetd"],
-        require => Package["git-daemon"],
+        mode    => '0644',
+        owner   => 'root',
+        group   => 'root',
+        content => template('gitolite3/git-xinetd.erb'),
+        notify  => Service['xinetd'],
+        require => Package['git-daemon'],
     }
 
-    service { "xinetd":
+    service { 'xinetd':
         ensure     => running,
         enable     => true,
         hasstatus  => true,
         hasrestart => true,
-        require    => Package["git-daemon"],
+        require    => Package['git-daemon'],
     }
-
 }
+
