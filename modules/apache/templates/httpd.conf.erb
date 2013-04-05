@@ -132,9 +132,11 @@ MaxRequestsPerChild  0
 # Change this to Listen on specific IP addresses as shown below to 
 # prevent Apache from glomming onto all bound IP addresses (0.0.0.0)
 #
-#Listen 12.34.56.78:80
-Listen 80
-
+<% if @listen_ip %>
+Listen <%=listen_ip%>:<%=listen_port%>
+<% else %>
+Listen <%=listen_port%>
+<% end %>
 #
 # Dynamic Shared Object (DSO) Support
 #
@@ -1008,3 +1010,4 @@ BrowserMatch "^Dreamweaver-WebDAV-SCM1" redirect-carefully
 #    ErrorLog logs/dummy-host.example.com-error_log
 #    CustomLog logs/dummy-host.example.com-access_log common
 #</VirtualHost>
+
