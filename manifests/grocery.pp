@@ -77,4 +77,32 @@ gitolite3::repo { 'py_beer_flask':
     ensure    => present,
     conf_file => '/vagrant/samples/repos_garden/py_beer_flask.conf',
 }
+gitolite3::repo { 'py_beer_flask_blueprint':
+    ensure    => present,
+    conf_file => '/vagrant/samples/repos_garden/py_beer_flask_blueprint.conf',
+}
+gitolite3::repo { 'py_beer_flask_intercept':
+    ensure    => present,
+    conf_file => '/vagrant/samples/repos_garden/py_beer_flask_intercept.conf',
+}
+gitolite3::repo { 'py_beer_flask_selenium':
+    ensure    => present,
+    conf_file => '/vagrant/samples/repos_garden/py_beer_flask_selenium.conf',
+}
+gitolite3::repo { 'py_beer_flask_tornado':
+    ensure    => present,
+    conf_file => '/vagrant/samples/repos_garden/py_beer_flask_tornado.conf',
+}
+gitolite3::repo { 'py_beer_flask_twill':
+    ensure    => present,
+    conf_file => '/vagrant/samples/repos_garden/py_beer_flask_twill.conf',
+}
+gitolite3::repo { 'py_beer_tornado':
+    ensure    => present,
+    conf_file => '/vagrant/samples/repos_garden/py_beer_tornado.conf',
+}
+gitolite3::repo { 'py_simple_tdd':
+    ensure    => present,
+    conf_file => '/vagrant/samples/repos_garden/py_simple_tdd.conf',
+}
 

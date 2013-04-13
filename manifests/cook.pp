@@ -18,7 +18,7 @@ Firewall {
 hiera_include('classes')
 # Classes order
 Class['yum_repos'] -> Class['basic_package'] -> Class['user::root']
-Class['basic_package'] -> Class['jenkins']
+Class['basic_package'] -> Class['jvm'] -> Class['jenkins']
 # Extra firewall rules
 firewall { '100 allow jenkins www':
     state  => ['NEW'],
