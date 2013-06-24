@@ -1,13 +1,13 @@
 <VirtualHost *:80>
-    ServerName <%= vhost_domain %>
-    ServerAlias www.<%= vhost_domain %>
-    ServerAdmin admin@<%= vhost_domain %>
+    ServerName <%= @vhost_domain %>
+    ServerAlias www.<%= @vhost_domain %>
+    ServerAdmin admin@<%= @vhost_domain %>
 
-    DocumentRoot <%= vhost_root %>
-    ErrorLog logs/<%= vhost_domain %>-error_log
-    CustomLog logs/<%= vhost_domain %>-access_log common
+    DocumentRoot <%= @vhost_root %>
+    ErrorLog logs/<%= @vhost_domain %>-error_log
+    CustomLog logs/<%= @vhost_domain %>-access_log common
 
-    <Directory <%= vhost_root %>>
+    <Directory <%= @vhost_root %>>
         Allow from all
         Options +Includes +Indexes +FollowSymLinks
         AllowOverride all

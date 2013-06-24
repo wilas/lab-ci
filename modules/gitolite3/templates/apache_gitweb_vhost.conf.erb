@@ -1,12 +1,12 @@
 <VirtualHost *:80>
 
-    Alias /gitweb <%=gitweb_cgi_dir%>
+    Alias /gitweb <%=@gitweb_cgi_dir%>
     ScriptAlias /git/ /usr/libexec/git-core/git-http-backend/
 
-    #SuexecUserGroup <%=gitweb_user%> <%=gitweb_group%>
+    #SuexecUserGroup <%=@gitweb_user%> <%=@gitweb_group%>
     #SetEnv GITWEB_CONFIG /etc/gitweb.conf
 
-    SetEnv GIT_PROJECT_ROOT <%=projectsroot%>
+    SetEnv GIT_PROJECT_ROOT <%=@projectsroot%>
     SetEnv GIT_HTTP_EXPORT_ALL
     ##SetEnv GITOLITE_HTTP_HOME /var/lib/gitolite3
 
@@ -14,11 +14,11 @@
     ServerAlias www.guillotine.to
     ServerAdmin admin@guillotine.to
 
-    DocumentRoot <%=gitweb_cgi_dir%>
+    DocumentRoot <%=@gitweb_cgi_dir%>
     ErrorLog logs/guillotine.to-error_log
     CustomLog logs/guillotine.to-access_log common
 
-    <Directory <%=gitweb_cgi_dir%>>
+    <Directory <%=@gitweb_cgi_dir%>>
         Options ExecCGI +FollowSymLinks +SymLinksIfOwnerMatch
 
         AllowOverride all

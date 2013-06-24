@@ -133,9 +133,9 @@ MaxRequestsPerChild  0
 # prevent Apache from glomming onto all bound IP addresses (0.0.0.0)
 #
 <% if @listen_ip %>
-Listen <%=listen_ip%>:<%=listen_port%>
+Listen <%=@listen_ip%>:<%=@listen_port%>
 <% else %>
-Listen <%=listen_port%>
+Listen <%=@listen_port%>
 <% end %>
 #
 # Dynamic Shared Object (DSO) Support
