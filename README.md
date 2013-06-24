@@ -14,7 +14,7 @@ Build continuous integration quazi development environment:
 
 ## Howto
 
- - create SL6 box using [veewee-boxarium](https://github.com/wilas/veewee-boxarium)
+ - create SL6 box using [vbkick-boxarium](https://github.com/wilas/vbkick-boxarium)
  - copy ssh_keys from [ssh-gerwazy](https://github.com/wilas/ssh-gerwazy)
 
 ```
